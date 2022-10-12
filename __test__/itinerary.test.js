@@ -1,4 +1,5 @@
 const Itinerary = require('../src/itinerary');
+const Port = require('../src/port');
 
 describe('Itinerary constructor', () => {
     it('instantiate an itinerary object', () => {
@@ -6,7 +7,9 @@ describe('Itinerary constructor', () => {
     });
 
     it('has ports property', () => {
-        const itin = new Itinerary(['Dover', 'Portsmouth'])
-        expect(itin.ports).toEqual(['Dover', 'Portsmouth']);
+        const dover = new Port('Dover');                //setup
+        const portsmouth = new Port('Portsmouth');      //setup
+        const itin = new Itinerary([dover, portsmouth]); //exercise
+        expect(itin.ports).toEqual([dover, portsmouth]); //verify
     });
 });
