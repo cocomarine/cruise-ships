@@ -1,7 +1,7 @@
 
 
-function Ship(startingPort) {
-    this.startingPort= startingPort;
+function Ship(port) {
+    this.startingPort= port;
 }
 
 Ship.prototype.setSail = function(port) {
