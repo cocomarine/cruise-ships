@@ -1,9 +1,7 @@
-const STARTINGPORT = 'Portsmouth';
 
 
-function Ship(name) {
-    this.name = name;
-    this.startingPort = STARTINGPORT;
+function Ship(startingPort) {
+    this.startingPort= startingPort;
 }
 
 Ship.prototype.setSail = function(port) {
