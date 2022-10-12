@@ -13,6 +13,14 @@ describe('constructor', () => {
     it('has a starting port', () => {
         const ship = new Ship('Artemis');
         expect(ship.startingPort).toBe('Portsmouth');
-    })
+    });
+});
 
+describe('setSail', () => {
+    it('can set sail from a starting port', () => {
+        const ship = new Ship('Aurora');         //setup
+        ship.setSail();                         //excerise
+
+        expect(ship.startingPort).toBeFalsy(); //verify
+    });
 });

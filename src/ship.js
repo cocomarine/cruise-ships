@@ -6,4 +6,8 @@ function Ship(name) {
     this.startingPort = STARTINGPORT;
 }
 
+Ship.prototype.setSail = function(port) {
+    this.startingPort = port;
+}
+
 module.exports = Ship;
