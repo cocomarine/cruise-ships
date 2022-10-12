@@ -7,8 +7,9 @@ describe('Ship constructor', () => {
     });
 
     it('has a current port', () => {
-        const ship = new Ship('Portsmouth');
-        expect(ship.startingPort).toBe('Portsmouth');
+        const port = new Port('Portsmouth')
+        const ship = new Ship(port);
+        expect(ship.currentPort).toBe(port);
     });
 });
 
