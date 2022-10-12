@@ -1,6 +1,6 @@
 const Ship = require('../src/ship');
 
-describe('constructor', () => {
+describe('Ship constructor', () => {
     it('returns a ship object', () => {
         expect(new Ship('Artemis')).toBeInstanceOf(Object);
     });
