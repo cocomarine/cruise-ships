@@ -8,7 +8,7 @@ describe('Ship constructor', () => {
 
     it('has a current port', () => {
         const port = new Port('Portsmouth')
-        const ship = new Ship(port);
+        const ship = new Ship(port);            //dependency inversion
         expect(ship.currentPort).toBe(port);
     });
 });
@@ -19,5 +19,17 @@ describe('setSail', () => {
         ship.setSail();                         //excerise
 
         expect(ship.startingPort).toBeFalsy(); //verify
+    });
+});
+
+describe('dock', () => {
+    it('can dock at a different port', () => {
+        const portsmouth = new Port("Portsmouth");
+        const ship = new Ship(portsmouth);
+        
+        const dover = new Port("Dover");
+        ship.dock(dover);
+
+        expect(ship.currentPort).toBe(dover);
     });
 });
