@@ -11,6 +11,13 @@ describe('Ship constructor', () => {
         const ship = new Ship(port);            //dependency inversion
         expect(ship.currentPort).toBe(port);
     });
+
+    it('has a previous port', () => {
+        const port = new Port('Portmouth');
+        const ship = new Ship(port);
+        expect(ship.previousPort).toBeNull();
+    });
+
 });
 
 describe('setSail', () => {
@@ -20,6 +27,14 @@ describe('setSail', () => {
 
         expect(ship.startingPort).toBeFalsy(); //verify
     });
+
+    it('sets a previous port property on the ship to the current port', () => {
+        const ship = new Ship('Dover');
+        ship.setSail();
+
+        expect(ship.currentPort).toBeNull();
+    });
+
 });
 
 describe('dock', () => {
