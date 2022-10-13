@@ -30,21 +30,36 @@ describe('Ship constructor', () => {
 
 describe('setSail', () => {
     it('can set sail', () => {
-        const port = new Port('Venice');
-        const itinerary = new Itinerary([port]);
-        const ship = new Ship(itinerary);        
+        const portsmouth = new Port("Portsmouth");
+        const dover = new Port("Dover");
+        const itinerary = new Itinerary([portsmouth, dover]);
+        const ship = new Ship(itinerary);  
         ship.setSail();                       
 
         expect(ship.startingPort).toBeFalsy(); 
     });
 
     it('sets a previous port property on the ship to the current port', () => {
-        const port = new Port('Dover');
-        const itinerary = new Itinerary([port]);
+        const portsmouth = new Port("Portsmouth");
+        const dover = new Port("Dover");
+        const itinerary = new Itinerary([portsmouth, dover]);
         const ship = new Ship(itinerary);
         ship.setSail();
 
         expect(ship.currentPort).toBeNull();
+    });
+
+    it('throws an error when sailing further than the last port in itinerary', () => {
+        const portsmouth = new Port("Portsmouth");
+        const dover = new Port("Dover");
+        const itinerary = new Itinerary([portsmouth, dover]);
+        const ship = new Ship(itinerary);
+
+        ship.setSail();
+        ship.dock();
+
+
+        expect(() => ship.setSail()).toThrow('Reached end of itinerary');
     });
 
 });
