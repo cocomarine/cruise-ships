@@ -19,7 +19,10 @@ describe('Add ship', () => {
 
     it('add ship to port', () => {
         const dover = new Port('Dover');
-        dover.addShip('Artemis');
-        expect(dover.ships).toEqual(['Artemis']);
+        const ship = {};
+
+        dover.addShip(ship);
+        expect(dover.ships).toContain(ship);
     });
 });
+
