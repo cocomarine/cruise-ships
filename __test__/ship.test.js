@@ -32,6 +32,18 @@ describe('Ship', () => {
         expect(dover.ships).toContain(ship);
     });
 
+    it('can dock at a different port', () => {
+        const dover = new Port('Dover');
+        const venice = new Port('Venice');
+        const itinerary = new Itinerary([dover, venice]);
+        const ship = new Ship(itinerary);
+
+        ship.setSail();
+        ship.dock();
+
+        expect(ship.currentPort).toBe(venice);
+        expect(venice.ships).toContain(ship);
+    });
 });
 
 describe('setSail', () => {
