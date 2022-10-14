@@ -35,13 +35,14 @@ describe('Ship', () => {
 
 describe('setSail', () => {
     it('can set sail', () => {
-        const portsmouth = new Port("Portsmouth");
+        const venice = new Port("Venice");
         const dover = new Port("Dover");
-        const itinerary = new Itinerary([portsmouth, dover]);
+        const itinerary = new Itinerary([venice, dover]);
         const ship = new Ship(itinerary);  
         ship.setSail();                       
 
-        expect(ship.startingPort).toBeFalsy(); 
+        expect(ship.currentPort).toBeFalsy(); 
+        expect(venice.ships).not.toContain(ship);
     });
 
     it('sets a previous port property on the ship to the current port', () => {
