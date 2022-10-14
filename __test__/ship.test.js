@@ -3,33 +3,33 @@ const Itinerary = require('../src/itinerary');
 const Port = require('../src/port');
 
 describe('Ship', () => {
-    it('returns a ship object', () => {
-        const port = new Port('Dover');
-        const itinerary = new Itinerary([port]);
-        const ship = new Ship(itinerary);
-
-        expect(ship).toBeInstanceOf(Object);
+    let dover;
+    let venice;
+    let itinerary;
+    let ship;
+    
+    beforeEach(() => {
+        dover = new Port("Dover");
+        venice = new Port("Venice");
+        itinerary = new Itinerary([dover, venice]);
+        ship = new Ship(itinerary);  
     });
+    describe('with ports and an itinerary', () => {
+        it('returns a ship object', () => {
+            expect(ship).toBeInstanceOf(Object);
+        });
 
-    it('has a starting point', () => {
-        const port = new Port('Dover');
-        const itinerary = new Itinerary([port]);
-        const ship = new Ship(itinerary);
-        expect(ship.currentPort).toBe(port);
-    });
+        it('has a starting point', () => {            
+            expect(ship.currentPort).toBe(dover);
+        });
 
-    it('has a previous port', () => {
-        const port = new Port('Dover');
-        const itinerary = new Itinerary([port]);
-        const ship = new Ship(itinerary);
-        expect(ship.previousPort).toBeNull();
-    });
+        it('has a previous port', () => {            
+            expect(ship.previousPort).toBeNull();
+        });
 
-    it('gest added to port on instantiation', () => {
-        const dover = new Port('Dover');
-        const itinerary = new Itinerary([dover]);
-        const ship = new Ship(itinerary);
-        expect(dover.ships).toContain(ship);
+        it('get added to port on instantiation', () => {            
+            expect(dover.ships).toContain(ship);
+        });
     });
 });
 
