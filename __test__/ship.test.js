@@ -2,7 +2,7 @@ const Ship = require('../src/ship.js');
 const Itinerary = require('../src/itinerary');
 const Port = require('../src/port');
 
-describe('Ship constructor', () => {
+describe('Ship', () => {
     it('returns a ship object', () => {
         const port = new Port('Dover');
         const itinerary = new Itinerary([port]);
@@ -25,7 +25,25 @@ describe('Ship constructor', () => {
         expect(ship.previousPort).toBeNull();
     });
 
+    it('gest added to port on instantiation', () => {
+        const dover = new Port('Dover');
+        const itinerary = new Itinerary([dover]);
+        const ship = new Ship(itinerary);
+        expect(dover.ships).toContain(ship);
+    });
 
+    it('can dock at a different port', () => {
+        const dover = new Port('Dover');
+        const venice = new Port('Venice');
+        const itinerary = new Itinerary([dover, venice]);
+        const ship = new Ship(itinerary);
+
+        ship.setSail();
+        ship.dock();
+
+        expect(ship.currentPort).toBe(venice);
+        expect(venice.ships).toContain(ship);
+    });
 });
 
 describe('setSail', () => {
@@ -78,3 +96,4 @@ describe('dock', () => {
         expect(ship.currentPort).toBe(dover);
     });
 });
+
