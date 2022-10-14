@@ -19,10 +19,26 @@ describe('Add ship', () => {
 
     it('add ship to port', () => {
         const dover = new Port('Dover');
-        const ship = {};
+        const artemis = {};
 
-        dover.addShip(ship);
-        expect(dover.ships).toContain(ship);
+        dover.addShip(artemis);
+        expect(dover.ships).toContain(artemis);
     });
 });
 
+describe('Remove ship', () => {
+    it('remove ship from port', () => {
+        const artemis = {};
+        const voyage = {};
+        const magestic = {};
+        const dover = new Port('Dover');
+
+        dover.addShip(artemis);
+        dover.addShip(voyage);
+        dover.addShip(magestic);
+        dover.removeShip(voyage);
+
+        expect(dover.ships).not.toContain(voyage);
+    });
+
+});
