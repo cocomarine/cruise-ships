@@ -27,62 +27,36 @@ describe('Ship', () => {
             expect(ship.previousPort).toBeNull();
         });
 
+        it('can set sail', () => {
+            ship.setSail();                       
+    
+            expect(ship.currentPort).toBeFalsy(); 
+            expect(dover.ships).not.toContain(ship);
+        });
+
         it('get added to port on instantiation', () => {            
             expect(dover.ships).toContain(ship);
         });
+
+        it('sets a previous port property on the ship to the current port', () => {
+            ship.setSail();
+            expect(ship.currentPort).toBeNull();
+        });
+
+        it('throws an error when sailing further than the last port in itinerary', () => {
+            ship.setSail();
+            ship.dock();
+    
+    
+            expect(() => ship.setSail()).toThrow('Reached end of itinerary');
+        });
+
+        it('can dock at a different port', () => {
+            ship.setSail();
+            ship.dock();
+    
+            expect(ship.currentPort).toBe(venice);
+            expect(venice.ships).toContain(ship);
+        });
     });
 });
-
-describe('setSail', () => {
-    it('can set sail', () => {
-        const venice = new Port("Venice");
-        const dover = new Port("Dover");
-        const itinerary = new Itinerary([venice, dover]);
-        const ship = new Ship(itinerary);  
-        ship.setSail();                       
-
-        expect(ship.currentPort).toBeFalsy(); 
-        expect(venice.ships).not.toContain(ship);
-    });
-
-    it('sets a previous port property on the ship to the current port', () => {
-        const portsmouth = new Port("Portsmouth");
-        const dover = new Port("Dover");
-        const itinerary = new Itinerary([portsmouth, dover]);
-        const ship = new Ship(itinerary);
-        ship.setSail();
-
-        expect(ship.currentPort).toBeNull();
-    });
-
-    it('throws an error when sailing further than the last port in itinerary', () => {
-        const portsmouth = new Port("Portsmouth");
-        const dover = new Port("Dover");
-        const itinerary = new Itinerary([portsmouth, dover]);
-        const ship = new Ship(itinerary);
-
-        ship.setSail();
-        ship.dock();
-
-
-        expect(() => ship.setSail()).toThrow('Reached end of itinerary');
-    });
-
-});
-
-describe('dock', () => {
-    it('can dock at a different port', () => {
-
-        const portsmouth = new Port("Portsmouth");
-        const dover = new Port("Dover");
-        const itinerary = new Itinerary([portsmouth, dover]);
-        const ship = new Ship(itinerary);
-        
-        ship.setSail();
-        ship.dock();
-
-        expect(ship.currentPort).toBe(dover);
-        expect(dover.ships).toContain(ship);
-    });
-});
-
