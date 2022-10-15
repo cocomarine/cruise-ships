@@ -6,8 +6,8 @@ describe('Port', () => {
     let dover;
 
     beforeEach(() => {
-        artemis = {};
-        voyage = {};
+        artemis = jest.fn();
+        voyage = jest.fn();
         dover = new Port('Dover');
     })
     describe('with ships and ports', () => {

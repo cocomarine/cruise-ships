@@ -7,9 +7,9 @@ describe('Itinerary constructor', () => {
     });
 
     it('has ports property', () => {
-        const dover = new Port('Dover');                //setup
-        const portsmouth = new Port('Portsmouth');      //setup
-        const itin = new Itinerary([dover, portsmouth]); //exercise
-        expect(itin.ports).toEqual([dover, portsmouth]); //verify
+        const dover = jest.fn();
+        const portsmouth = jest.fn();
+        const itin = new Itinerary([dover, portsmouth]);
+        expect(itin.ports).toEqual([dover, portsmouth]);
     });
 });
