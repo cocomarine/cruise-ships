@@ -9,8 +9,20 @@ describe('Ship', () => {
     let ship;
     
     beforeEach(() => {
-        dover = new Port("Dover");
-        venice = new Port("Venice");
+        dover ={
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name: 'Dover',
+            ships: []
+        };
+
+        venice = {
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name: 'Venice',
+            ships: []
+        };
+
         itinerary = new Itinerary([dover, venice]);
         ship = new Ship(itinerary);  
     });
@@ -31,11 +43,11 @@ describe('Ship', () => {
             ship.setSail();                       
     
             expect(ship.currentPort).toBeFalsy(); 
-            expect(dover.ships).not.toContain(ship);
+            expect(dover.removeShip).toHaveBeenCalledWith(ship);
         });
 
         it('get added to port on instantiation', () => {            
-            expect(dover.ships).toContain(ship);
+            expect(dover.addShip).toHaveBeenCalledWith(ship);
         });
 
         it('sets a previous port property on the ship to the current port', () => {
@@ -56,7 +68,7 @@ describe('Ship', () => {
             ship.dock();
     
             expect(ship.currentPort).toBe(venice);
-            expect(venice.ships).toContain(ship);
+            expect(venice.addShip).toHaveBeenCalledWith(ship);
         });
     });
 });
