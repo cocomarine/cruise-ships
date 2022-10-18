@@ -1,5 +1,4 @@
 const Ship = require('../src/ship.js');
-const Itinerary = require('../src/itinerary');
 
 describe('Ship', () => {
     let dover;
@@ -22,7 +21,10 @@ describe('Ship', () => {
             ships: []
         };
 
-        itinerary = new Itinerary([dover, venice]);
+        itinerary = {
+            ports: [dover, venice]
+        };
+
         ship = new Ship(itinerary);  
     });
     describe('with ports and an itinerary', () => {
