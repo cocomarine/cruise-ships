@@ -7,7 +7,7 @@ describe('Ship', () => {
     let ship;
     
     beforeEach(() => {
-        dover ={
+        dover = {
             addShip: jest.fn(),
             removeShip: jest.fn(),
             name: 'Dover',

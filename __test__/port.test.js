@@ -25,6 +25,7 @@ describe('Port', () => {
 
         it('add ship to port', () => {    
             dover.addShip(artemis);
+            
             expect(dover.ships).toContain(artemis);
         });
 
